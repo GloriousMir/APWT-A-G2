@@ -5,11 +5,11 @@
   </tr>
   
   <tr>
-  	<th colspan="4"><h3>[CSC4161]	ADVANCED PROGRAMMING IN WEB TECHNOLOGY [GROUP: 2]</h3></th>
+  	<th colspan="4"><h3>ADVANCED PROGRAMMING IN WEB TECHNOLOGY [CSC4161]</h3></th>
   </tr>
   
   <tr>
-  	<th colspan="4">Course Teacher: <a href="https://github.com/hsazzad-prog">SAZZAD HOSSAIN</a></th>
+  	<th colspan="4">Course Teacher: <a href="https://github.com/hsazzad-prog">SAZZAD HOSSAIN</a> <br> [GROUP: 2] </th>
   </tr>
   
   <tr>
