@@ -5,7 +5,7 @@
   </tr>
   
   <tr>
-  	<th colspan="4"><h3>CSC4161	ADVANCED PROGRAMMING IN WEB TECHNOLOGY [GROUP: 2]</h3></th>
+  	<th colspan="4"><h3>[CSC4161]	ADVANCED PROGRAMMING IN WEB TECHNOLOGY [GROUP: 2]</h3></th>
   </tr>
   
   <tr>
@@ -18,28 +18,28 @@
     <th>Section</th>
   </tr>
   
-    <tr>
+  <tr>
     <td><a href="https://github.com/GloriousMir">Mir Maruf Ahmed</a></td>
     <td>20-42082-1</td>
     <td align="center">A</td>
-    </tr>
+  </tr>
   
-    <tr>
-    <td><a href="https://github.com/GloriousMir">Mir Maruf Ahmed</a></td>
-    <td>20-42082-1</td>
+  <tr>
+    <td><a href="https://github.com/hadiChowdhury">MD.Abdul Hadi Chowdhury</a></td>
+    <td>19-41439-3</td>
     <td align="center">A</td>
-    </tr>
+  </tr>
   
-    <tr>
-    <td><a href="https://github.com/GloriousMir">Mir Maruf Ahmed</a></td>
-    <td>20-42082-1</td>
+  <tr>
+    <td><a href="https://github.com/khanMahirRahaman">Mahir Rahaman Khan</a></td>
+    <td>19-41440-3</td>
     <td align="center">A</td>
-    </tr>
-  
-    <tr>
-    <td><a href="https://github.com/GloriousMir">Mir Maruf Ahmed</a></td>
-    <td>20-42082-1</td>
+  </tr>
+
+  <tr>
+    <td><a href="https://github.com/MirzaMohiuddin">Mirza Mohiuddin</a></td>
+    <td>20-43598-1</td>
     <td align="center">A</td>
-    </tr>
+  </tr>
     
 </table>
