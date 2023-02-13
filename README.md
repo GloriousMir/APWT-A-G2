@@ -18,27 +18,28 @@
     <th>Section</th>
   </tr>
   
-  <tr>
+    <tr>
     <td><a href="https://github.com/GloriousMir">Mir Maruf Ahmed</a></td>
     <td>20-42082-1</td>
     <td align="center">A</td>
-  </tr>
+    </tr>
   
     <tr>
     <td><a href="https://github.com/GloriousMir">Mir Maruf Ahmed</a></td>
     <td>20-42082-1</td>
     <td align="center">A</td>
-  </tr>
+    </tr>
   
     <tr>
     <td><a href="https://github.com/GloriousMir">Mir Maruf Ahmed</a></td>
     <td>20-42082-1</td>
     <td align="center">A</td>
-  </tr>
+    </tr>
   
     <tr>
     <td><a href="https://github.com/GloriousMir">Mir Maruf Ahmed</a></td>
     <td>20-42082-1</td>
     <td align="center">A</td>
-  </tr>
+    </tr>
+    
 </table>
