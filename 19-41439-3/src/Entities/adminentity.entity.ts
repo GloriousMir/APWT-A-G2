@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { StudentEntity } from "./studententity.entity";
 
 @Entity("admin")
 export class AdminEntity{
@@ -16,4 +17,7 @@ export class AdminEntity{
   
     @Column()
     address: string;
+
+    @OneToMany(() => StudentEntity, (student) => student.admin)
+    students: StudentEntity[]
 }

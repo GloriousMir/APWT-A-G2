@@ -25,16 +25,29 @@ export class AdminService {
     {
         return this.adminRepo.find();
     }
-    getStudentByID(id):any {
+    getAdminByID(id):any {
         return this.adminRepo.findOneBy({ id });
     }
 
-    getStudentByIDName(qry):any {
+    getAdminByIDName(qry):any {
         return this.adminRepo.findOneBy({ id:qry.id,name:qry.name });
     }
-    updateStudentUser(name,id):any {
+    updateAdmin(name,id):any {
         console.log(name+id);
         return this.adminRepo.update(id,{name:name});
         }
+    deleteAdminbyid(id):any {
+    
+        return this.adminRepo.delete(id);
+    }
+
+    getStudentByAdminID(id):any {
+        return this.adminRepo.find({ 
+                where: {id:id},
+            relations: {
+                students: true,
+            },
+         });
+    }
 
 }

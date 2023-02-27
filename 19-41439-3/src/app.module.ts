@@ -3,9 +3,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AdminModule } from './modules/admin/admin.module';
+import { StudentModule } from './modules/student/student.module';
+import { StudentService } from './services/student/student.service';
 
 @Module({
-  imports: [AdminModule, TypeOrmModule.forRoot(
+  imports: [AdminModule,StudentModule, TypeOrmModule.forRoot(
     {
       type: 'postgres',
       host: 'localhost',
@@ -17,7 +19,7 @@ import { AdminModule } from './modules/admin/admin.module';
       synchronize: true,
     }
   )],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
