@@ -26,4 +26,5 @@ export class TeacherController {
   remove(@Param('id') id) {
     return `This is a DELETE request with id: ${id}`;
   }
+  @WebGLShaderPrecisionFormat
 }
