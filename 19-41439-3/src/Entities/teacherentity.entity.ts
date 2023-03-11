@@ -1,5 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { AdminEntity } from "./adminentity.entity";
+import { ModEntity } from "./modentity.entity";
 
 @Entity('teacher')
 export class TeacherEntity
@@ -30,4 +31,7 @@ export class TeacherEntity
 
     @ManyToOne(() => AdminEntity, (admin) => admin.teachers)
     admin: AdminEntity
+
+    @ManyToOne(() => ModEntity, (mod) => mod.teachers)
+    mod: ModEntity
 }

@@ -1,4 +1,5 @@
 import { AdminEntity } from "./adminentity.entity";
+import { ModEntity } from "./modentity.entity";
 export declare class TeacherEntity {
     id: number;
     TeacherName: string;
@@ -9,4 +10,5 @@ export declare class TeacherEntity {
     Username: string;
     password: string;
     admin: AdminEntity;
+    mod: ModEntity;
 }

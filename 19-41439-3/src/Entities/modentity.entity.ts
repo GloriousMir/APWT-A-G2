@@ -2,13 +2,17 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { StudentEntity } from "./studententity.entity";
 import { TeacherEntity } from "./teacherentity.entity";
 
-@Entity("admin")
-export class AdminEntity{
+@Entity("mod")
+export class ModEntity{
     @PrimaryGeneratedColumn()
     id: number;
   
     @Column()
     name: string;
+
+    
+    @Column()
+    phone: string;
   
     @Column()
     email: string;
@@ -16,15 +20,6 @@ export class AdminEntity{
     @Column()
     password: string;
   
-    @Column()
-    address: string;
-
-     @Column()
-     filename: string;
-
-    @OneToMany(() => StudentEntity, (student) => student.admin)
-    students: StudentEntity[]
-
-    @OneToMany(() => TeacherEntity, (teacher) => teacher.admin)
-    teachers: TeacherEntity[]
+    @OneToMany(() => TeacherEntity, (teacher) => teacher.mod)
+    teachers: TeacherEntity[];
 }

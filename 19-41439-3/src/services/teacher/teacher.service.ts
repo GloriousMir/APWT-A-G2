@@ -25,9 +25,13 @@ export class TeacherService {
              },
         });
     }
-    getTeacher()
+    getAllTeacher()
     {
         return this.teacherRepo.find();
+    }
+    getTeachertByID(id):any
+    {
+        return this.teacherRepo.findOneBy(id);
     }
     deleteTeacherbyid(id):any {
     

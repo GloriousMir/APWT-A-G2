@@ -6,6 +6,7 @@ export declare class TeacherService {
     constructor(teacherRepo: Repository<TeacherEntity>);
     insertTeacher(mydto: TeacherDto): any;
     getAdminByTeacherID(id: any): any;
-    getTeacher(): Promise<TeacherEntity[]>;
+    getAllTeacher(): Promise<TeacherEntity[]>;
+    getTeachertByID(id: any): any;
     deleteTeacherbyid(id: any): any;
 }

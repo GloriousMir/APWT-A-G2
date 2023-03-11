@@ -12,40 +12,28 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TeacherService = void 0;
+exports.ModService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const teacherentity_entity_1 = require("../../Entities/teacherentity.entity");
+const modentity_entity_1 = require("../../Entities/modentity.entity");
 const typeorm_2 = require("typeorm");
-let TeacherService = class TeacherService {
-    constructor(teacherRepo) {
-        this.teacherRepo = teacherRepo;
+let ModService = class ModService {
+    constructor(modRepo) {
+        this.modRepo = modRepo;
     }
-    insertTeacher(mydto) {
-        return this.teacherRepo.save(mydto);
-    }
-    getAdminByTeacherID(id) {
-        return this.teacherRepo.find({
+    getTeacherByModID(id) {
+        return this.modRepo.find({
             where: { id: id },
             relations: {
-                admin: true,
+                teachers: true,
             },
         });
     }
-    getAllTeacher() {
-        return this.teacherRepo.find();
-    }
-    getTeachertByID(id) {
-        return this.teacherRepo.findOneBy(id);
-    }
-    deleteTeacherbyid(id) {
-        return this.teacherRepo.delete(id);
-    }
 };
-TeacherService = __decorate([
+ModService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(teacherentity_entity_1.TeacherEntity)),
+    __param(0, (0, typeorm_1.InjectRepository)(modentity_entity_1.ModEntity)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
-], TeacherService);
-exports.TeacherService = TeacherService;
-//# sourceMappingURL=teacher.service.js.map
+], ModService);
+exports.ModService = ModService;
+//# sourceMappingURL=mod.service.js.map

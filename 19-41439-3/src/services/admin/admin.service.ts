@@ -26,12 +26,25 @@ export class AdminService {
         const adminaccount = new AdminEntity()
         adminaccount.name = mydto.name;
         adminaccount.email = mydto.email;
-        //adminaccount.password = mydto.password;
         adminaccount.address = mydto.address;
+        adminaccount.filename = mydto.filename;
         const salt = await bcrypt.genSalt();
         const hassedpassed = await bcrypt.hash(mydto.password, salt);
         adminaccount.password= hassedpassed;
        return this.adminRepo.save(adminaccount);
+    }
+
+    async signin(mydto){
+    console.log(mydto.password);
+    const mydata= await this.adminRepo.findOneBy({email: mydto.email});
+    const isMatch= await bcrypt.compare(mydto.password, mydata.password);
+    if(isMatch) {
+    return 1;
+    }
+    else {
+        return 0;
+    }
+    
     }
 
     getAdmin()
@@ -46,7 +59,6 @@ export class AdminService {
         return this.adminRepo.findOneBy({ id:qry.id,name:qry.name });
     }
     updateAdmin(name,id):any {
-        console.log(name+id);
         return this.adminRepo.update(id,{name:name});
         }
     deleteAdminbyid(id):any {
@@ -60,6 +72,14 @@ export class AdminService {
             relations: {
                 students: true,
             },
+         });
+    }
+    getTeacherByAdminID(id):any {
+        return this.adminRepo.find({ 
+                where: {id:id},
+                 relations: {
+                    students: true,
+                 },
          });
     }
 

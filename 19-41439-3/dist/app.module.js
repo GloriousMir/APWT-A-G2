@@ -10,13 +10,14 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const admin_module_1 = require("./modules/admin/admin.module");
+const mod_module_1 = require("./modules/mod/mod.module");
 const student_module_1 = require("./modules/student/student.module");
 const teacher_module_1 = require("./modules/teacher/teacher.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [admin_module_1.AdminModule, student_module_1.StudentModule, teacher_module_1.TeacherModule, typeorm_1.TypeOrmModule.forRoot({
+        imports: [admin_module_1.AdminModule, student_module_1.StudentModule, teacher_module_1.TeacherModule, mod_module_1.ModModule, typeorm_1.TypeOrmModule.forRoot({
                 type: 'postgres',
                 host: 'localhost',
                 port: 5432,

@@ -3,4 +3,5 @@ export declare class AdminDto {
     email: string;
     password: string;
     address: string;
+    filename: string;
 }

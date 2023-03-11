@@ -6,6 +6,7 @@ export declare class AdminEntity {
     email: string;
     password: string;
     address: string;
+    filename: string;
     students: StudentEntity[];
     teachers: TeacherEntity[];
 }

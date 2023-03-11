@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TeacherEntity = void 0;
 const typeorm_1 = require("typeorm");
 const adminentity_entity_1 = require("./adminentity.entity");
+const modentity_entity_1 = require("./modentity.entity");
 let TeacherEntity = class TeacherEntity {
 };
 __decorate([
@@ -50,6 +51,10 @@ __decorate([
     (0, typeorm_1.ManyToOne)(() => adminentity_entity_1.AdminEntity, (admin) => admin.teachers),
     __metadata("design:type", adminentity_entity_1.AdminEntity)
 ], TeacherEntity.prototype, "admin", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => modentity_entity_1.ModEntity, (mod) => mod.teachers),
+    __metadata("design:type", modentity_entity_1.ModEntity)
+], TeacherEntity.prototype, "mod", void 0);
 TeacherEntity = __decorate([
     (0, typeorm_1.Entity)('teacher')
 ], TeacherEntity);
