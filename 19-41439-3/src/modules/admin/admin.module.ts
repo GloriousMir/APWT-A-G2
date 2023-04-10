@@ -1,3 +1,4 @@
+import { MailerModule } from '@nestjs-modules/mailer';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AdminController } from 'src/controller/admin/admin.controller';
@@ -11,7 +12,21 @@ import { StudentService } from 'src/services/student/student.service';
 import { TeacherService } from 'src/services/teacher/teacher.service';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([AdminEntity,StudentEntity,TeacherEntity,ModEntity])],
+    imports: [
+        MailerModule.forRoot({
+            transport: {
+              host: 'smtp.gmail.com',
+                       port: 465,
+                       ignoreTLS: true,
+                       secure: true,
+                       auth: {
+                           user: 'chowdhuryshibu913@gmail.com',
+                        //    pass: 'your app password'
+                        pass: 'pgqvfxhwtttlhtbj'
+
+                       },
+                      }
+          }),TypeOrmModule.forFeature([AdminEntity,StudentEntity,TeacherEntity,ModEntity])],
     controllers: [AdminController],
     providers: [AdminService,StudentService,TeacherService,ModService]
 })

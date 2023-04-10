@@ -61,6 +61,12 @@ export class AdminController {
     signup(@Body() mydto: AdminDto,@UploadedFile(  new ParseFilePipe({
       validators: [
         new MaxFileSizeValidator({ maxSize: 160000 }),
+
+
+
+
+
+         
         new FileTypeValidator({ fileType: 'png|jpg|jpeg|' }),
       ],
     }),) file: Express.Multer.File){
@@ -95,22 +101,25 @@ export class AdminController {
       throw new UnauthorizedException("Invalid Actions.....are you logged in?");
     }
   }
-  
+  @Post('/sendemail')
+    sendEmail(@Body() mydata){
+    return this.adminService.sendEmail(mydata);
+  }
 /*----------------------------------------[END]----------------------------------------*/
 
 
     @Get('/all')
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     getAdmin(){
         return this.adminService.getAdmin();
     }
     @Get('/findadmin/:id')
-    @UseGuards(SessionGuard)
+    //@UseGuards(SessionGuard)
       getAdminByID(@Param('id', ParseIntPipe) id: number): any {
         return this.adminService.getAdminByID(id);
       }
     @Get('/findadmin')
-    @UseGuards(SessionGuard)
+    //@UseGuards(SessionGuard)
     getAdminByIDName(@Query() qry: any): any {
         return this.adminService.getAdminByIDName(qry);
      }
@@ -133,7 +142,7 @@ export class AdminController {
         return this.studentService.getStudent();
     }
     @Post('/insertstudent')
-    @UseGuards(SessionGuard)
+   @UseGuards(SessionGuard)
     @UsePipes(new ValidationPipe())
       insertStudent(@Body() StudentDto: StudentEntity): any {
         return this.studentService.insertStudent(StudentDto);

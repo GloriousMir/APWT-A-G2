@@ -4,12 +4,14 @@ import { AdminDto } from 'src/DTOs/adminDTO.dto';
 import { AdminEntity } from 'src/Entities/adminentity.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { MailerService } from "@nestjs-modules/mailer/dist";
 
 @Injectable()
 export class AdminService {
     constructor(
         @InjectRepository(AdminEntity)
         private adminRepo: Repository<AdminEntity>,
+        private mailerService: MailerService
       ) {}
 
         // async signup(AdminDto) {
@@ -18,7 +20,15 @@ export class AdminService {
         // AdminDto.password= hassedpassed;
         // return this.adminRepo.save(AdminDto);
         // }
-    
+        async sendEmail(mydata){
+            return   await this.mailerService.sendMail({
+                   to: mydata.email,
+                   subject: mydata.subject,
+                   text: mydata.text, 
+                 });
+           
+           }
+           
 
         
    async signup(mydto:AdminDto)

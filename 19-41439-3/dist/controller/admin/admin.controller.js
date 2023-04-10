@@ -52,6 +52,9 @@ let AdminController = class AdminController {
             throw new common_1.UnauthorizedException("Invalid Actions.....are you logged in?");
         }
     }
+    sendEmail(mydata) {
+        return this.adminService.sendEmail(mydata);
+    }
     getAdmin() {
         return this.adminService.getAdmin();
     }
@@ -134,15 +137,20 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AdminController.prototype, "signout", null);
 __decorate([
+    (0, common_1.Post)('/sendemail'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], AdminController.prototype, "sendEmail", null);
+__decorate([
     (0, common_1.Get)('/all'),
-    (0, common_1.UseGuards)(session_guard_1.SessionGuard),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], AdminController.prototype, "getAdmin", null);
 __decorate([
     (0, common_1.Get)('/findadmin/:id'),
-    (0, common_1.UseGuards)(session_guard_1.SessionGuard),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -150,7 +158,6 @@ __decorate([
 ], AdminController.prototype, "getAdminByID", null);
 __decorate([
     (0, common_1.Get)('/findadmin'),
-    (0, common_1.UseGuards)(session_guard_1.SessionGuard),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

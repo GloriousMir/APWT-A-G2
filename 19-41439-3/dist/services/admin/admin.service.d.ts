@@ -1,9 +1,12 @@
 import { AdminDto } from 'src/DTOs/adminDTO.dto';
 import { AdminEntity } from 'src/Entities/adminentity.entity';
 import { Repository } from 'typeorm';
+import { MailerService } from "@nestjs-modules/mailer/dist";
 export declare class AdminService {
     private adminRepo;
-    constructor(adminRepo: Repository<AdminEntity>);
+    private mailerService;
+    constructor(adminRepo: Repository<AdminEntity>, mailerService: MailerService);
+    sendEmail(mydata: any): Promise<SentMessageInfo>;
     signup(mydto: AdminDto): Promise<AdminEntity>;
     signin(mydto: any): Promise<1 | 0>;
     getAdmin(): Promise<AdminEntity[]>;

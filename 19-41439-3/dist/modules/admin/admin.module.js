@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AdminModule = void 0;
+const mailer_1 = require("@nestjs-modules/mailer");
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const admin_controller_1 = require("../../controller/admin/admin.controller");
@@ -22,7 +23,20 @@ let AdminModule = class AdminModule {
 };
 AdminModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([adminentity_entity_1.AdminEntity, studententity_entity_1.StudentEntity, teacherentity_entity_1.TeacherEntity, modentity_entity_1.ModEntity])],
+        imports: [
+            mailer_1.MailerModule.forRoot({
+                transport: {
+                    host: 'smtp.gmail.com',
+                    port: 465,
+                    ignoreTLS: true,
+                    secure: true,
+                    auth: {
+                        user: 'chowdhuryshibu913@gmail.com',
+                        pass: 'pgqvfxhwtttlhtbj'
+                    },
+                }
+            }), typeorm_1.TypeOrmModule.forFeature([adminentity_entity_1.AdminEntity, studententity_entity_1.StudentEntity, teacherentity_entity_1.TeacherEntity, modentity_entity_1.ModEntity])
+        ],
         controllers: [admin_controller_1.AdminController],
         providers: [admin_service_1.AdminService, student_service_1.StudentService, teacher_service_1.TeacherService, mod_service_1.ModService]
     })

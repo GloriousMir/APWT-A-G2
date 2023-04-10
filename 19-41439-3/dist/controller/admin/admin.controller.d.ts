@@ -19,6 +19,7 @@ export declare class AdminController {
     signout(session: any): {
         message: string;
     };
+    sendEmail(mydata: any): Promise<SentMessageInfo>;
     getAdmin(): Promise<import("../../Entities/adminentity.entity").AdminEntity[]>;
     getAdminByID(id: number): any;
     getAdminByIDName(qry: any): any;
