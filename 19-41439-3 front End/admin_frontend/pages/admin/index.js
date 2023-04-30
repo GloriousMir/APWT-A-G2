@@ -12,6 +12,8 @@ export default function AdminDashboard() {
     <br></br>
     <Link href="/admin/findusers">Find Users by ID</Link>
     <br></br>
+    <Link href="/admin/findadminbyname">Find Users by Name</Link>
+    <br></br>
       </>
     )
   }

@@ -64,6 +64,9 @@ export class AdminService {
     getAdminByID(id):any {
         return this.adminRepo.findOneBy({ id });
     }
+    getAdminByName(name):any{
+        return this.adminRepo.findOneBy({name});
+    }
 
     getAdminByIDName(qry):any {
         return this.adminRepo.findOneBy({ id:qry.id,name:qry.name });

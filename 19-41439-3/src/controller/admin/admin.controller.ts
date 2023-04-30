@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, FileTypeValidator, Get, MaxFileSizeValidator, Param, ParseFilePipe, ParseIntPipe, Post, Put, Query, Session, UnauthorizedException, UploadedFile, UseGuards, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, FileTypeValidator, Get, MaxFileSizeValidator, Param, ParseFilePipe, ParseIntPipe, Post, Put, Query, Res, Session, UnauthorizedException, UploadedFile, UseGuards, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { AdminDto } from 'src/DTOs/adminDTO.dto';
@@ -118,10 +118,21 @@ export class AdminController {
       getAdminByID(@Param('id', ParseIntPipe) id: number): any {
         return this.adminService.getAdminByID(id);
       }
+
+      @Get('/findadminbyname/:name')
+      //@UseGuards(SessionGuard)
+        getAdminByName(@Param('name') name: string): any {
+          return this.adminService.getAdminByName(name);
+        }
     @Get('/findadmin')
     //@UseGuards(SessionGuard)
     getAdminByIDName(@Query() qry: any): any {
         return this.adminService.getAdminByIDName(qry);
+     }
+     @Get('getimage/:name')
+     getImages(@Param('name') name, @Res() res)
+     {
+      res.sendFile(name,{root: "./uploads"})
      }
     @Put('/updateadmin/:id')
     @UseGuards(SessionGuard)

@@ -22,7 +22,9 @@ export declare class AdminController {
     sendEmail(mydata: any): Promise<SentMessageInfo>;
     getAdmin(): Promise<import("../../Entities/adminentity.entity").AdminEntity[]>;
     getAdminByID(id: number): any;
+    getAdminByName(name: string): any;
     getAdminByIDName(qry: any): any;
+    getImages(name: any, res: any): void;
     updateAdmin(name: string, id: number): any;
     deleteAdminbyid(id: number): any;
     getStudent(): Promise<StudentEntity[]>;

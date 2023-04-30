@@ -11,6 +11,7 @@ export declare class AdminService {
     signin(mydto: any): Promise<1 | 0>;
     getAdmin(): Promise<AdminEntity[]>;
     getAdminByID(id: any): any;
+    getAdminByName(name: any): any;
     getAdminByIDName(qry: any): any;
     updateAdmin(name: any, id: any): any;
     deleteAdminbyid(id: any): any;

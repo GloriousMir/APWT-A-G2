@@ -61,8 +61,14 @@ let AdminController = class AdminController {
     getAdminByID(id) {
         return this.adminService.getAdminByID(id);
     }
+    getAdminByName(name) {
+        return this.adminService.getAdminByName(name);
+    }
     getAdminByIDName(qry) {
         return this.adminService.getAdminByIDName(qry);
+    }
+    getImages(name, res) {
+        res.sendFile(name, { root: "./uploads" });
     }
     updateAdmin(name, id) {
         return this.adminService.updateAdmin(name, id);
@@ -157,12 +163,27 @@ __decorate([
     __metadata("design:returntype", Object)
 ], AdminController.prototype, "getAdminByID", null);
 __decorate([
+    (0, common_1.Get)('/findadminbyname/:name'),
+    __param(0, (0, common_1.Param)('name')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Object)
+], AdminController.prototype, "getAdminByName", null);
+__decorate([
     (0, common_1.Get)('/findadmin'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Object)
 ], AdminController.prototype, "getAdminByIDName", null);
+__decorate([
+    (0, common_1.Get)('getimage/:name'),
+    __param(0, (0, common_1.Param)('name')),
+    __param(1, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", void 0)
+], AdminController.prototype, "getImages", null);
 __decorate([
     (0, common_1.Put)('/updateadmin/:id'),
     (0, common_1.UseGuards)(session_guard_1.SessionGuard),

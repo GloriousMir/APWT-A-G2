@@ -3,14 +3,17 @@ const nextConfig = {
   reactStrictMode: true,
 }
 
+
 module.exports = {
   images: {
     remotePatterns: [
       {
         protocol: 'http',
         hostname: 'localhost',
-        port: '3000',
+        port: '1000',
       },
     ],
-  },nextConfig
+  },
+  nextConfig
 }
+
