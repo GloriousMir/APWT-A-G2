@@ -43,11 +43,15 @@ let AdminService = class AdminService {
         return this.adminRepo.save(adminaccount);
     }
     async signin(mydto) {
-        console.log(mydto.password);
-        const mydata = await this.adminRepo.findOneBy({ email: mydto.email });
-        const isMatch = await bcrypt.compare(mydto.password, mydata.password);
-        if (isMatch) {
-            return 1;
+        if (mydto.email != null && mydto.password != null) {
+            const mydata = await this.adminRepo.findOneBy({ email: mydto.email });
+            const isMatch = await bcrypt.compare(mydto.password, mydata.password);
+            if (isMatch) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
         }
         else {
             return 0;

@@ -35,13 +35,14 @@ let AdminController = class AdminController {
         mydto.filename = file.filename;
         return this.adminService.signup(mydto);
     }
-    signin(session, mydto) {
-        if (session.email = mydto.email) {
-            console.log(session.email);
-            return { message: "Login success" };
+    async signin(session, mydto) {
+        const res = await (this.adminService.signin(mydto));
+        if (res == 1) {
+            session.email = mydto.email;
+            return (session.email);
         }
         else {
-            return { message: "Invalid Credentials........Try again" };
+            throw new common_1.UnauthorizedException({ message: "invalid credentials" });
         }
     }
     signout(session) {
@@ -128,12 +129,13 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AdminController.prototype, "signup", null);
 __decorate([
-    (0, common_1.Get)('/signin'),
+    (0, common_1.Post)('/signin'),
+    (0, common_1.UsePipes)(new common_1.ValidationPipe()),
     __param(0, (0, common_1.Session)()),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, adminDTO_dto_1.AdminDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], AdminController.prototype, "signin", null);
 __decorate([
     (0, common_1.Get)('/signout'),
@@ -170,7 +172,7 @@ __decorate([
     __metadata("design:returntype", Object)
 ], AdminController.prototype, "getAdminByName", null);
 __decorate([
-    (0, common_1.Get)('/findadmin'),
+    (0, common_1.Get)('/findadminbynameid'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

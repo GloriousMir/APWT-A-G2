@@ -13,9 +13,7 @@ export declare class AdminController {
     private modService;
     constructor(adminService: AdminService, studentService: StudentService, teacherService: TeacherService, modService: ModService);
     signup(mydto: AdminDto, file: Express.Multer.File): Promise<import("../../Entities/adminentity.entity").AdminEntity>;
-    signin(session: any, mydto: AdminDto): {
-        message: string;
-    };
+    signin(session: any, mydto: AdminDto): Promise<any>;
     signout(session: any): {
         message: string;
     };

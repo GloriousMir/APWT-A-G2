@@ -75,20 +75,35 @@ export class AdminController {
         return this.adminService.signup(mydto);
       }
 
-    @Get('/signin')
-    signin(@Session() session, @Body() mydto:AdminDto)
-      {
+    // @Get('/signin')
+    // signin(@Session() session, @Body() mydto:AdminDto)
+    //   {
       
-       if(session.email = mydto.email)
-      {
-        console.log(session.email);
-        return {message:"Login success"};
-      }
-      else
-      {
-       return {message:"Invalid Credentials........Try again"};
-      }
-    }
+    //    if(session.email = mydto.email)
+    //   {
+    //     console.log(session.email);
+    //     return {message:"Login success"};
+    //   }
+    //   else
+    //   {
+    //    return {message:"Invalid Credentials........Try again"};
+    //   }
+    // }
+    @Post('/signin')
+    @UsePipes(new ValidationPipe())
+    async signin(@Session() session, @Body() mydto:AdminDto)
+    {
+      const res = await (this.adminService.signin(mydto));
+    if(res== 1)
+  {
+    session.email = mydto.email;
+    return (session.email);
+  }
+  else
+  {
+    throw new UnauthorizedException({ message: "invalid credentials" });
+  }
+  }
     @Get('/signout')
     signout(@Session() session)
     {
@@ -124,7 +139,7 @@ export class AdminController {
         getAdminByName(@Param('name') name: string): any {
           return this.adminService.getAdminByName(name);
         }
-    @Get('/findadmin')
+    @Get('/findadminbynameid')
     //@UseGuards(SessionGuard)
     getAdminByIDName(@Query() qry: any): any {
         return this.adminService.getAdminByIDName(qry);
