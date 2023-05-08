@@ -43,18 +43,23 @@ let AdminService = class AdminService {
         return this.adminRepo.save(adminaccount);
     }
     async signin(mydto) {
+        console.log(mydto.password);
         if (mydto.email != null && mydto.password != null) {
+            console.log(mydto.email);
+            console.log(mydto.password);
             const mydata = await this.adminRepo.findOneBy({ email: mydto.email });
+            console.log(mydata);
             const isMatch = await bcrypt.compare(mydto.password, mydata.password);
+            console.log(isMatch);
             if (isMatch) {
-                return 1;
+                return true;
             }
             else {
-                return 0;
+                return false;
             }
         }
         else {
-            return 0;
+            return false;
         }
     }
     getAdmin() {
@@ -69,11 +74,11 @@ let AdminService = class AdminService {
     getAdminByIDName(qry) {
         return this.adminRepo.findOneBy({ id: qry.id, name: qry.name });
     }
-    updateAdmin(name, id) {
-        return this.adminRepo.update(id, { name: name });
+    updateUserbyid(mydto, id) {
+        return this.adminRepo.update(id, mydto);
     }
-    deleteAdminbyid(id) {
-        return this.adminRepo.remove(id);
+    deleteUserbyid(id) {
+        return this.adminRepo.delete(id);
     }
     getStudentByAdminID(id) {
         return this.adminRepo.find({

@@ -5,6 +5,7 @@ import MyLayout from "@/pages/component/layout"
 import { useRouter } from 'next/router'
 
 import AdminDrawer from '../component/admindrawer'
+import SessionCheck from '../component/sessioncheck';
 
 export default function AddAdmin() {
     const router = useRouter();
@@ -25,13 +26,12 @@ export default function AddAdmin() {
 
     const [success, setSuccess] = useState('')
     const onSubmit = async (data) => {
-        console.log(data);
         const formData = new FormData();
         formData.append('name', data.name);
         formData.append('email', data.email);
         formData.append('password', data.password);
         formData.append('address', data.address);
-        formData.append('myfile', data.myfile[0]);
+        formData.append('Profile', data.Profile[0]);
         console.log(formData);
         try {
             const response = await axios.post("http://localhost:3000/admin/signup",
@@ -47,14 +47,15 @@ export default function AddAdmin() {
 
         }
         catch (error) {
-            console.log(error.response.data.message);
+            console.log(error);
             
-            setSuccess('Admin add unsuccessfull ' + error.response.data.message);
+            setSuccess('Admin add unsuccessfull ' + error);
         }
     };
 
     return (
         <>
+        
            
             <MyLayout title="Add Admin" />
             <AdminDrawer />
@@ -124,12 +125,12 @@ export default function AddAdmin() {
                 <div>
                    
 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>
-<input type="file" id="myfile" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-{...register('myfile', { required: true, validate: validateFile })}
+<input type="file" id="Profile" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+{...register('Profile', { required: true, validate: validateFile })}
 />
-{errors.myfile && 
+{errors.Profile && 
                     <p>
-                    {errors.myfile.type === 'required'
+                    {errors.Profile.type === 'required'
                                                     ?
   <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400"><span class="font-medium">file is required</span></p>
                                                     :

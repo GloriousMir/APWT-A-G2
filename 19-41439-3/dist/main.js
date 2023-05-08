@@ -13,6 +13,7 @@ async function bootstrap() {
             maxAge: 3000000
         }
     }));
+    app.enableCors();
     await app.listen(3000);
 }
 bootstrap();

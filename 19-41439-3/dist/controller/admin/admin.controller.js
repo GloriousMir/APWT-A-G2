@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const platform_express_1 = require("@nestjs/platform-express");
 const multer_1 = require("multer");
 const adminDTO_dto_1 = require("../../DTOs/adminDTO.dto");
+const adminUpdate_dto_1 = require("../../DTOs/adminUpdate.dto");
 const studententity_entity_1 = require("../../Entities/studententity.entity");
 const teacherentity_entity_1 = require("../../Entities/teacherentity.entity");
 const admin_service_1 = require("../../services/admin/admin.service");
@@ -37,7 +38,7 @@ let AdminController = class AdminController {
     }
     async signin(session, mydto) {
         const res = await (this.adminService.signin(mydto));
-        if (res == 1) {
+        if (res == true) {
             session.email = mydto.email;
             return (session.email);
         }
@@ -71,11 +72,11 @@ let AdminController = class AdminController {
     getImages(name, res) {
         res.sendFile(name, { root: "./uploads" });
     }
-    updateAdmin(name, id) {
-        return this.adminService.updateAdmin(name, id);
+    updateAdminbyid(mydto, id) {
+        return this.adminService.updateUserbyid(mydto, id);
     }
     deleteAdminbyid(id) {
-        return this.adminService.deleteAdminbyid(id);
+        return this.adminService.deleteUserbyid(id);
     }
     getStudent() {
         return this.studentService.getStudent();
@@ -188,17 +189,15 @@ __decorate([
 ], AdminController.prototype, "getImages", null);
 __decorate([
     (0, common_1.Put)('/updateadmin/:id'),
-    (0, common_1.UseGuards)(session_guard_1.SessionGuard),
     (0, common_1.UsePipes)(new common_1.ValidationPipe()),
-    __param(0, (0, common_1.Body)('name')),
-    __param(1, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Number]),
+    __metadata("design:paramtypes", [adminUpdate_dto_1.AdminUpdate, Number]),
     __metadata("design:returntype", Object)
-], AdminController.prototype, "updateAdmin", null);
+], AdminController.prototype, "updateAdminbyid", null);
 __decorate([
     (0, common_1.Delete)('/deleteadmin/:id'),
-    (0, common_1.UseGuards)(session_guard_1.SessionGuard),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),

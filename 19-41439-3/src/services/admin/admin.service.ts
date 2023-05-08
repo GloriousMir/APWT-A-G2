@@ -5,6 +5,7 @@ import { AdminEntity } from 'src/Entities/adminentity.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { MailerService } from "@nestjs-modules/mailer/dist";
+import { AdminUpdate } from 'src/DTOs/adminUpdate.dto';
 
 @Injectable()
 export class AdminService {
@@ -13,13 +14,7 @@ export class AdminService {
         private adminRepo: Repository<AdminEntity>,
         private mailerService: MailerService
       ) {}
-
-        // async signup(AdminDto) {
-        // const salt = await bcrypt.genSalt();
-        // const hassedpassed = await bcrypt.hash(AdminDto.password, salt);
-        // AdminDto.password= hassedpassed;
-        // return this.adminRepo.save(AdminDto);
-        // }
+      
         async sendEmail(mydata){
             return   await this.mailerService.sendMail({
                    to: mydata.email,
@@ -57,18 +52,24 @@ export class AdminService {
     
     // }
     async signin(mydto){
-   
+        console.log(mydto.password);
         if (mydto.email != null && mydto.password != null) {
+            console.log(mydto.email);
+            console.log( mydto.password);
+
             const mydata = await this.adminRepo.findOneBy({ email: mydto.email });
+            console.log( mydata);
+
             const isMatch = await bcrypt.compare(mydto.password, mydata.password);
+            console.log(isMatch);
             if (isMatch) {
-                return 1;
+                return true;
             }
             else {
-                return 0;
+                return false;
             }
         } else {
-            return 0;
+            return false;
         }
        
     }
@@ -88,13 +89,16 @@ export class AdminService {
     getAdminByIDName(qry):any {
         return this.adminRepo.findOneBy({ id:qry.id,name:qry.name });
     }
-    updateAdmin(name,id):any {
-        return this.adminRepo.update(id,{name:name});
-        }
-    deleteAdminbyid(id):any {
+    // updateAdmin(name,id):any {
+    //     return this.adminRepo.update(id,{name:name});
+    //     }
+    updateUserbyid(mydto:AdminUpdate,id):any {
+        return this.adminRepo.update(id,mydto);
+           }
+        deleteUserbyid(id):any {
     
-        return this.adminRepo.remove(id);
-    }
+            return this.adminRepo.delete(id);
+        }
 
     getStudentByAdminID(id):any {
         return this.adminRepo.find({ 

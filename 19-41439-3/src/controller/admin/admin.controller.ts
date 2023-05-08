@@ -2,6 +2,7 @@ import { Body, Controller, Delete, FileTypeValidator, Get, MaxFileSizeValidator,
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { AdminDto } from 'src/DTOs/adminDTO.dto';
+import { AdminUpdate } from 'src/DTOs/adminUpdate.dto';
 import { TeacherDto } from 'src/DTOs/teacherDTO.dto';
 import { StudentEntity } from 'src/Entities/studententity.entity';
 import { TeacherEntity } from 'src/Entities/teacherentity.entity';
@@ -61,12 +62,6 @@ export class AdminController {
     signup(@Body() mydto: AdminDto,@UploadedFile(  new ParseFilePipe({
       validators: [
         new MaxFileSizeValidator({ maxSize: 160000 }),
-
-
-
-
-
-         
         new FileTypeValidator({ fileType: 'png|jpg|jpeg|' }),
       ],
     }),) file: Express.Multer.File){
@@ -94,7 +89,7 @@ export class AdminController {
     async signin(@Session() session, @Body() mydto:AdminDto)
     {
       const res = await (this.adminService.signin(mydto));
-    if(res== 1)
+    if(res== true)
   {
     session.email = mydto.email;
     return (session.email);
@@ -149,16 +144,18 @@ export class AdminController {
      {
       res.sendFile(name,{root: "./uploads"})
      }
+   
     @Put('/updateadmin/:id')
-    @UseGuards(SessionGuard)
     @UsePipes(new ValidationPipe())
-    updateAdmin(@Body('name') name: string, @Param('id') id: number): any {
-        return this.adminService.updateAdmin(name, id);
+    updateAdminbyid(
+      @Body() mydto: AdminUpdate,
+      @Param('id', ParseIntPipe) id: number,
+    ): any {
+      return this.adminService.updateUserbyid(mydto, id);
     }
     @Delete('/deleteadmin/:id')
-    @UseGuards(SessionGuard)
     deleteAdminbyid(@Param('id', ParseIntPipe) id: number): any {
-      return this.adminService.deleteAdminbyid(id);
+      return this.adminService.deleteUserbyid(id);
     }
     /**********************************STUDENT*********************************************************/
 
