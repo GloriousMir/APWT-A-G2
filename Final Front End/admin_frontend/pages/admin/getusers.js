@@ -18,7 +18,7 @@ export default function GetUsers({ data }) {
         {data.map(item => (
           <li key={item.id}>
             <Link href={"/admin/dashboard/users/" + item.id}><div className="font-bold text-black-600/100 bg-gray-200 px-16 m-10"
-            >{item.name}</div></Link>
+            >Name:{item.name}  & Email:{item.email}</div></Link>
             </li>
         ))}
       </ul>
