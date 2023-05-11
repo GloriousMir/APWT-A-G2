@@ -11,7 +11,7 @@ export declare class AdminService {
     signup(mydto: AdminDto): Promise<AdminEntity>;
     signin(mydto: any): Promise<boolean>;
     getAdmin(): Promise<AdminEntity[]>;
-    getAdminByID(id: any): any;
+    getAdminByID(id: any): Promise<AdminEntity>;
     getAdminByName(name: any): any;
     getAdminByIDName(qry: any): any;
     updateUserbyid(mydto: AdminUpdate, id: any): any;

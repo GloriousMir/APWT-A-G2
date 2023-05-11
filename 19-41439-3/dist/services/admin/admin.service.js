@@ -65,8 +65,15 @@ let AdminService = class AdminService {
     getAdmin() {
         return this.adminRepo.find();
     }
-    getAdminByID(id) {
-        return this.adminRepo.findOneBy({ id });
+    async getAdminByID(id) {
+        const data = await this.adminRepo.findOneBy({ id });
+        console.log(data);
+        if (data !== null) {
+            return data;
+        }
+        else {
+            throw new common_1.HttpException('Not Found', common_1.HttpStatus.NOT_FOUND);
+        }
     }
     getAdminByName(name) {
         return this.adminRepo.findOneBy({ name });

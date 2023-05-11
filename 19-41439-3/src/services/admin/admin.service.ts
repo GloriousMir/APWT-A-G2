@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AdminDto } from 'src/DTOs/adminDTO.dto';
 import { AdminEntity } from 'src/Entities/adminentity.entity';
@@ -79,9 +79,21 @@ export class AdminService {
     {
         return this.adminRepo.find();
     }
-    getAdminByID(id):any {
-        return this.adminRepo.findOneBy({ id });
+    async getAdminByID(id) {
+        const data=await this.adminRepo.findOneBy({ id });
+        console.log(data);
+        if(data!==null) {
+            return data;
+        }
+       else 
+       {
+        throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
+       }
+    
     }
+    // getAdminByID(id):any {
+    //     return this.adminRepo.findOneBy({ id });
+    // }
     getAdminByName(name):any{
         return this.adminRepo.findOneBy({name});
     }
