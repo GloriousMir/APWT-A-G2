@@ -5,7 +5,7 @@ export default function Footer()
     return(
         <>
 
-<footer className="bg-white rounded-lg  m-4">
+<footer className="bg-white rounded-lg m-2 md:m-4 p-2 md:p-4">
     <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
       
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
@@ -14,7 +14,7 @@ export default function Footer()
 </footer>
 
        
-            
+             
 
 
 

@@ -7,6 +7,6 @@ export declare class StudentService {
     insertStudent(mydto: StudentDto): any;
     getAdminByStudentID(id: any): any;
     getStudent(): Promise<StudentEntity[]>;
-    getStudentByID(id: any): any;
+    getStudentByID(id: any): Promise<StudentEntity>;
     deleteStudentbyid(id: any): any;
 }

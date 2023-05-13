@@ -35,8 +35,15 @@ let StudentService = class StudentService {
     getStudent() {
         return this.studentRepo.find();
     }
-    getStudentByID(id) {
-        return this.studentRepo.findOneBy(id);
+    async getStudentByID(id) {
+        const data = await this.studentRepo.findOneBy({ id });
+        console.log(data);
+        if (data !== null) {
+            return data;
+        }
+        else {
+            throw new common_1.HttpException('Not Found', common_1.HttpStatus.NOT_FOUND);
+        }
     }
     deleteStudentbyid(id) {
         return this.studentRepo.delete(id);

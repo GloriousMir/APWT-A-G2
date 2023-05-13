@@ -6,6 +6,8 @@ import { useRouter } from 'next/router'
 
 import AdminDrawer from '../component/admindrawer'
 import SessionCheck from '../component/sessioncheck';
+import LoggedLayout from '../component/loggedlayout';
+import Footer from '../component/footer';
 
 export default function AddAdmin() {
     const router = useRouter();
@@ -57,10 +59,10 @@ export default function AddAdmin() {
         <>
         
            
-            <MyLayout title="Add Admin" />
+            <LoggedLayout title="Add Admin" />
             <AdminDrawer />
-            <div class="pt-44 sm:ml-64">
-            <section class="bg-gray-50 dark:bg-gray-900">
+            <div class="pt-20 sm:ml-64">
+            <section class="bg-gray-0 dark:bg-gray-900">
   <div class="flex flex-col items-center justify-center px-auto mx-auto md:h-screen lg:py-0">
       
       <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -147,7 +149,7 @@ export default function AddAdmin() {
                 </section>
               
             </div>
-          
+          <Footer/>
         </>
     );
 }

@@ -205,7 +205,6 @@ __decorate([
 ], AdminController.prototype, "deleteAdminbyid", null);
 __decorate([
     (0, common_1.Get)('/allstudent'),
-    (0, common_1.UseGuards)(session_guard_1.SessionGuard),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
@@ -229,7 +228,6 @@ __decorate([
 ], AdminController.prototype, "getStudentByAdminID", null);
 __decorate([
     (0, common_1.Get)('/findstudent/:id'),
-    (0, common_1.UseGuards)(session_guard_1.SessionGuard),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),

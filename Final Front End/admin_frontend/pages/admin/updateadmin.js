@@ -6,6 +6,8 @@ import MyLayout from "@/pages/component/layout"
 import { useRouter } from 'next/router'
 import AdminDrawer from '../component/admindrawer'
 import { data } from 'autoprefixer';
+import LoggedLayout from '../component/loggedlayout';
+import Footer from '../component/footer';
 export default function updateadmin() {
     const router = useRouter();
     const {
@@ -47,10 +49,10 @@ export default function updateadmin() {
     return (
         <>
            
-            <MyLayout title="Update Admin" />
+            <LoggedLayout title="Update Admin" />
             <AdminDrawer />
-            <div class="pt-44 sm:ml-64">
-            <section class="bg-gray-50 dark:bg-gray-900">
+            <div class="pt-20 sm:ml-64">
+            <section class="bg-gray-0 dark:bg-gray-900">
   <div class="flex flex-col items-center justify-center px-auto mx-auto md:h-screen lg:py-0">
       
       <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -127,7 +129,12 @@ export default function updateadmin() {
         }
                 </p>}      
                 </div>
-                          <button type="submit" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Update</button>
+                <div class="flex">
+  <button type="submit" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Update</button>
+  <button onClick={() => router.back()} class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Back</button>
+</div>
+
+
               </form>
           </div>
       </div>
@@ -135,7 +142,7 @@ export default function updateadmin() {
                 </section>
               
             </div>
-          
+          <Footer/>
         </>
     );
 }

@@ -69,21 +69,6 @@ export class AdminController {
     mydto.filename = file.filename; 
         return this.adminService.signup(mydto);
       }
-
-    // @Get('/signin')
-    // signin(@Session() session, @Body() mydto:AdminDto)
-    //   {
-      
-    //    if(session.email = mydto.email)
-    //   {
-    //     console.log(session.email);
-    //     return {message:"Login success"};
-    //   }
-    //   else
-    //   {
-    //    return {message:"Invalid Credentials........Try again"};
-    //   }
-    // }
     @Post('/signin')
     @UsePipes(new ValidationPipe())
     async signin(@Session() session, @Body() mydto:AdminDto)
@@ -160,7 +145,7 @@ export class AdminController {
     /**********************************STUDENT*********************************************************/
 
     @Get('/allstudent')
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     getStudent(){
         return this.studentService.getStudent();
     }
@@ -176,7 +161,7 @@ export class AdminController {
     return this.adminService.getStudentByAdminID(id);
     }
     @Get('/findstudent/:id')
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     getStudentByID(@Param('id', ParseIntPipe) id: number): any {
         return this.studentService.getStudentByID(id);
       }

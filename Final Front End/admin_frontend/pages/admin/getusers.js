@@ -3,12 +3,13 @@ import MyLayout from "@/pages/component/layout"
 import axios from "axios";
 import { useRouter } from 'next/router'
 import AdminDrawer from '../component/admindrawer'
+import LoggedLayout from "../component/loggedlayout";
 export default function GetUsers({ data }) {
   const router = useRouter();
   return (
     <>
 
-      <MyLayout title="Get Users" />
+      <LoggedLayout title="Get Users" />
       <AdminDrawer />
       <div class="p-24 sm:ml-64">
         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
