@@ -1,6 +1,8 @@
 /// <reference types="multer" />
 import { AdminDto } from 'src/DTOs/adminDTO.dto';
 import { AdminUpdate } from 'src/DTOs/adminUpdate.dto';
+import { StudentUpdate } from 'src/DTOs/studentUpdate.dto';
+import { TeacherUpdate } from 'src/DTOs/teacherUpdate.dto';
 import { StudentEntity } from 'src/Entities/studententity.entity';
 import { TeacherEntity } from 'src/Entities/teacherentity.entity';
 import { AdminService } from 'src/services/admin/admin.service';
@@ -30,9 +32,11 @@ export declare class AdminController {
     insertStudent(StudentDto: StudentEntity): any;
     getStudentByAdminID(id: number): any;
     getStudentByID(id: number): any;
+    updateStudentbyid(mydto: StudentUpdate, id: number): any;
     deleteStudentbyid(id: number): any;
     getAllTeacher(): Promise<TeacherEntity[]>;
     insertTeacher(TeacherDto: TeacherEntity): any;
+    updateTeacherbyid(mydto: TeacherUpdate, id: number): any;
     getTeacherByModID(id: number): any;
     getTeachertByID(id: number): any;
     deleteTeacherbyid(id: number): any;

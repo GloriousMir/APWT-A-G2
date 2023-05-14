@@ -18,7 +18,6 @@ import { TeacherModule } from './modules/teacher/teacher.module';
       database: 'Pro',
       autoLoadEntities: true,
       synchronize: true,
-
     }
   )],
   controllers: [],

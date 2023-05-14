@@ -41,6 +41,15 @@ let TeacherService = class TeacherService {
     deleteTeacherbyid(id) {
         return this.teacherRepo.delete(id);
     }
+    updateTeacherbyid(mydto, id) {
+        try {
+            return this.teacherRepo.update(id, mydto);
+        }
+        catch (error) {
+            console.log(error);
+            throw new common_1.InternalServerErrorException();
+        }
+    }
 };
 TeacherService = __decorate([
     (0, common_1.Injectable)(),

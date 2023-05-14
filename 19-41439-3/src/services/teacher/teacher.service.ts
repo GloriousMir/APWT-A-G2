@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TeacherDto } from 'src/DTOs/teacherDTO.dto';
+import { TeacherUpdate } from 'src/DTOs/teacherUpdate.dto';
 import { TeacherEntity } from 'src/Entities/teacherentity.entity';
 import { Repository } from 'typeorm';
 
@@ -37,4 +38,12 @@ export class TeacherService {
     
         return this.teacherRepo.delete(id);
     }
+    updateTeacherbyid(mydto:TeacherUpdate,id):any {
+        try {
+            return this.teacherRepo.update(id,mydto);
+        } catch (error) {
+            console.log(error);
+            throw new InternalServerErrorException();
+        }
+}
 }

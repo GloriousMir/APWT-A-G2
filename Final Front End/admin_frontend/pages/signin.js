@@ -27,11 +27,9 @@ export default function SignIn() {
     return (
         <>
             <MyLayout title="Sign In" />
-   
             <div class="p-24 ">
         <section className="text-gray-600 body-font mx-auto w-96">
         <form onSubmit={handleSubmit}>
-  
     <div className="bg-white-600 shadow dark:border md:mt-0 rounded-lg p-8 md:ml-auto w-auto mt-10 md:mt-0">
       <h2 className="text-gray-900 text-lg font-medium title-font mb-5">Sign In</h2>
       <div className="relative mb-4">

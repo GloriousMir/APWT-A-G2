@@ -1,4 +1,5 @@
 import { StudentDto } from 'src/DTOs/studentDTO.dto';
+import { StudentUpdate } from 'src/DTOs/studentUpdate.dto';
 import { StudentEntity } from 'src/Entities/studententity.entity';
 import { Repository } from 'typeorm';
 export declare class StudentService {
@@ -9,4 +10,5 @@ export declare class StudentService {
     getStudent(): Promise<StudentEntity[]>;
     getStudentByID(id: any): Promise<StudentEntity>;
     deleteStudentbyid(id: any): any;
+    updateStudentbyid(mydto: StudentUpdate, id: any): any;
 }

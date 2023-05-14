@@ -48,6 +48,15 @@ let StudentService = class StudentService {
     deleteStudentbyid(id) {
         return this.studentRepo.delete(id);
     }
+    updateStudentbyid(mydto, id) {
+        try {
+            return this.studentRepo.update(id, mydto);
+        }
+        catch (error) {
+            console.log(error);
+            throw new common_1.InternalServerErrorException();
+        }
+    }
 };
 StudentService = __decorate([
     (0, common_1.Injectable)(),

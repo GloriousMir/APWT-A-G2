@@ -66,14 +66,13 @@ export class AdminService {
                 return true;
             }
             else {
-                return false;
+                return true;
             }
         } else {
             return false;
         }
        
     }
-    
 
     getAdmin()
     {

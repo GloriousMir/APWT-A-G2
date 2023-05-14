@@ -1,6 +1,7 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { StudentDto } from 'src/DTOs/studentDTO.dto';
+import { StudentUpdate } from 'src/DTOs/studentUpdate.dto';
 import { StudentEntity } from 'src/Entities/studententity.entity';
 import { Repository } from 'typeorm';
 
@@ -60,4 +61,13 @@ export class StudentService {
     
         return this.studentRepo.delete(id);
     }
+    updateStudentbyid(mydto:StudentUpdate,id):any {
+        try {
+            return this.studentRepo.update(id,mydto);
+        } catch (error) {
+            console.log(error);
+            throw new InternalServerErrorException();
+        }
+        
+}
 }

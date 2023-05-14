@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AdminController = void 0;
 const common_1 = require("@nestjs/common");
@@ -18,6 +19,8 @@ const platform_express_1 = require("@nestjs/platform-express");
 const multer_1 = require("multer");
 const adminDTO_dto_1 = require("../../DTOs/adminDTO.dto");
 const adminUpdate_dto_1 = require("../../DTOs/adminUpdate.dto");
+const studentUpdate_dto_1 = require("../../DTOs/studentUpdate.dto");
+const teacherUpdate_dto_1 = require("../../DTOs/teacherUpdate.dto");
 const studententity_entity_1 = require("../../Entities/studententity.entity");
 const teacherentity_entity_1 = require("../../Entities/teacherentity.entity");
 const admin_service_1 = require("../../services/admin/admin.service");
@@ -90,6 +93,9 @@ let AdminController = class AdminController {
     getStudentByID(id) {
         return this.studentService.getStudentByID(id);
     }
+    updateStudentbyid(mydto, id) {
+        return this.studentService.updateStudentbyid(mydto, id);
+    }
     deleteStudentbyid(id) {
         return this.studentService.deleteStudentbyid(id);
     }
@@ -98,6 +104,9 @@ let AdminController = class AdminController {
     }
     insertTeacher(TeacherDto) {
         return this.teacherService.insertTeacher(TeacherDto);
+    }
+    updateTeacherbyid(mydto, id) {
+        return this.teacherService.updateTeacherbyid(mydto, id);
     }
     getTeacherByModID(id) {
         return this.modService.getTeacherByModID(id);
@@ -131,7 +140,6 @@ __decorate([
 ], AdminController.prototype, "signup", null);
 __decorate([
     (0, common_1.Post)('/signin'),
-    (0, common_1.UsePipes)(new common_1.ValidationPipe()),
     __param(0, (0, common_1.Session)()),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -234,8 +242,16 @@ __decorate([
     __metadata("design:returntype", Object)
 ], AdminController.prototype, "getStudentByID", null);
 __decorate([
+    (0, common_1.Put)('/updatestudent/:id'),
+    (0, common_1.UsePipes)(new common_1.ValidationPipe()),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [studentUpdate_dto_1.StudentUpdate, Number]),
+    __metadata("design:returntype", Object)
+], AdminController.prototype, "updateStudentbyid", null);
+__decorate([
     (0, common_1.Delete)('/deletestudent/:id'),
-    (0, common_1.UseGuards)(session_guard_1.SessionGuard),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -243,19 +259,26 @@ __decorate([
 ], AdminController.prototype, "deleteStudentbyid", null);
 __decorate([
     (0, common_1.Get)('/allteacher'),
-    (0, common_1.UseGuards)(session_guard_1.SessionGuard),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], AdminController.prototype, "getAllTeacher", null);
 __decorate([
     (0, common_1.Post)('/insertteacher'),
-    (0, common_1.UseGuards)(session_guard_1.SessionGuard),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [teacherentity_entity_1.TeacherEntity]),
     __metadata("design:returntype", Object)
 ], AdminController.prototype, "insertTeacher", null);
+__decorate([
+    (0, common_1.Put)('/updateteacher/:id'),
+    (0, common_1.UsePipes)(new common_1.ValidationPipe()),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [typeof (_a = typeof teacherUpdate_dto_1.TeacherUpdate !== "undefined" && teacherUpdate_dto_1.TeacherUpdate) === "function" ? _a : Object, Number]),
+    __metadata("design:returntype", Object)
+], AdminController.prototype, "updateTeacherbyid", null);
 __decorate([
     (0, common_1.Get)('/findteacherbymod/:id'),
     (0, common_1.UseGuards)(session_guard_1.SessionGuard),
@@ -266,7 +289,6 @@ __decorate([
 ], AdminController.prototype, "getTeacherByModID", null);
 __decorate([
     (0, common_1.Get)('/findteacher/:id'),
-    (0, common_1.UseGuards)(session_guard_1.SessionGuard),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),

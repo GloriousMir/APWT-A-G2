@@ -3,7 +3,9 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { AdminDto } from 'src/DTOs/adminDTO.dto';
 import { AdminUpdate } from 'src/DTOs/adminUpdate.dto';
+import { StudentUpdate } from 'src/DTOs/studentUpdate.dto';
 import { TeacherDto } from 'src/DTOs/teacherDTO.dto';
+import { TeacherUpdate } from 'src/DTOs/teacherUpdate.dto';
 import { StudentEntity } from 'src/Entities/studententity.entity';
 import { TeacherEntity } from 'src/Entities/teacherentity.entity';
 import { AdminService } from 'src/services/admin/admin.service';
@@ -70,7 +72,7 @@ export class AdminController {
         return this.adminService.signup(mydto);
       }
     @Post('/signin')
-    @UsePipes(new ValidationPipe())
+    // @UsePipes(new ValidationPipe())
     async signin(@Session() session, @Body() mydto:AdminDto)
     {
       const res = await (this.adminService.signin(mydto));
@@ -165,22 +167,38 @@ export class AdminController {
     getStudentByID(@Param('id', ParseIntPipe) id: number): any {
         return this.studentService.getStudentByID(id);
       }
+      @Put('/updatestudent/:id')
+      @UsePipes(new ValidationPipe())
+      updateStudentbyid(
+        @Body() mydto: StudentUpdate,
+        @Param('id', ParseIntPipe) id: number,
+      ): any {
+        return this.studentService.updateStudentbyid(mydto, id);
+      }
     @Delete('/deletestudent/:id')
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     deleteStudentbyid(@Param('id', ParseIntPipe) id: number): any {
       return this.studentService.deleteStudentbyid(id);
     }
     /**********************************TEACHER*********************************************************/
     @Get('/allteacher')
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     getAllTeacher(){
         return this.teacherService.getAllTeacher();
     }
     @Post('/insertteacher')
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     //@UsePipes(new ValidationPipe())
       insertTeacher(@Body() TeacherDto: TeacherEntity): any {
         return this.teacherService.insertTeacher(TeacherDto);
+      }
+      @Put('/updateteacher/:id')
+      @UsePipes(new ValidationPipe())
+      updateTeacherbyid(
+        @Body() mydto: TeacherUpdate,
+        @Param('id', ParseIntPipe) id: number,
+      ): any {
+        return this.teacherService.updateTeacherbyid(mydto, id);
       }
     @Get('/findteacherbymod/:id')
     @UseGuards(SessionGuard)
@@ -188,7 +206,7 @@ export class AdminController {
     return this.modService.getTeacherByModID(id);
     }
     @Get('/findteacher/:id')
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     getTeachertByID(@Param('id', ParseIntPipe) id: number): any {
         return this.teacherService.getTeachertByID(id);
       }
