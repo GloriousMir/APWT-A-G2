@@ -10,8 +10,8 @@ export default function TeacherUserLayout(props) {
     router.push("./../../dashboard/updateteacher/"+ props.id)
    }
     const deleteUser = async () =>{
-        await axios.delete("http://localhost:3000/admin/deletestudent/"+ props.id);
-        router.push("./../../getstudents")
+        await axios.delete("http://localhost:3000/admin/deleteteacher/"+ props.id);
+        router.push("./../../getteachers")
     }
     return (
         <>

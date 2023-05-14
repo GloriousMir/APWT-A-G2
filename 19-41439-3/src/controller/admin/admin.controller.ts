@@ -205,13 +205,14 @@ export class AdminController {
     getTeacherByModID(@Param('id', ParseIntPipe) id: number): any {
     return this.modService.getTeacherByModID(id);
     }
+    
     @Get('/findteacher/:id')
     // @UseGuards(SessionGuard)
     getTeachertByID(@Param('id', ParseIntPipe) id: number): any {
         return this.teacherService.getTeachertByID(id);
       }
     @Delete('/deleteteacher/:id')
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     deleteTeacherbyid(@Param('id', ParseIntPipe) id: number): any {
       return this.teacherService.deleteTeacherbyid(id);
    

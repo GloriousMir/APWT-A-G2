@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TeacherDto } from 'src/DTOs/teacherDTO.dto';
 import { TeacherUpdate } from 'src/DTOs/teacherUpdate.dto';
@@ -30,9 +30,17 @@ export class TeacherService {
     {
         return this.teacherRepo.find();
     }
-    getTeachertByID(id):any
-    {
-        return this.teacherRepo.findOneBy(id);
+    
+    async getTeachertByID(id) {
+        const data=await this.teacherRepo.findOneBy({ id });
+        console.log(data);
+        if(data!==null) {
+            return data;
+        }
+       else 
+       {
+        throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
+       }
     }
     deleteTeacherbyid(id):any {
     

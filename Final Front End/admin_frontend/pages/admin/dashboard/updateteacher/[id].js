@@ -21,16 +21,16 @@ const [success, setSuccess] = useState('')
 const onSubmit = async (data) => {
     console.log(data);
     try {
-        const response = await axios.put("http://localhost:3000/admin/updatestudent/" +myid,
-            { StudentName: data.name , StudentEmail: data.email, Adress: data.Address, PhoneNumber:data.PhoneNumber });
+        const response = await axios.put("http://localhost:3000/admin/updateteacher/" +myid,
+            { TeacherName: data.name , TeacherEmail: data.email, Adress: data.Address, PhoneNumber:data.PhoneNumber });
       
-        setSuccess('Student Updated successfully');
+        setSuccess('Teacher Updated successfully');
         reset();
     }
     catch (error) {
         console.log(error.response.data.message);
         
-        setSuccess('Student Update unsuccessfull ' + error.response.data.message);
+        setSuccess('Teacher Update unsuccessfull ' + error.response.data.message);
     }
 };
   return (
@@ -64,11 +64,11 @@ const onSubmit = async (data) => {
                       <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
                         <input type="email" id="email" //defaultValue={}
                                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required=""
-                                            {...register('email', { required: true, pattern: /\S+@\S+\.\S+/ })}  defaultValue={data.StudentEmail} 
+                                            {...register('email', { required: true, pattern: /\S+@\S+\.\S+/ })}  defaultValue={data.TeacherEmail} 
                                         />
-                                          {errors.StudentEmail && (
+                                          {errors.TeacherEmail && (
                         <p>
-                            {errors.StudentEmail.type === 'required'
+                            {errors.TeacherEmail.type === 'required'
                                                     ?
                                                     <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400"><span class="font-medium">Email is required</span></p>
                                                     :
@@ -93,7 +93,7 @@ const onSubmit = async (data) => {
                   </div>
                 <div class="flex">
                           <button type="submit" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Update</button>
-                          <button onClick={() => router.push('/admin/dashboard')} class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Back</button>
+                          <button onClick={() => router.push('/admin/getteachers')} class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Back</button>
                           </div>
               </form>
           </div>

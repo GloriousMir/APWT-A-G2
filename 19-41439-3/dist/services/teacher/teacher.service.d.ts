@@ -8,7 +8,7 @@ export declare class TeacherService {
     insertTeacher(mydto: TeacherDto): any;
     getAdminByTeacherID(id: any): any;
     getAllTeacher(): Promise<TeacherEntity[]>;
-    getTeachertByID(id: any): any;
+    getTeachertByID(id: any): Promise<TeacherEntity>;
     deleteTeacherbyid(id: any): any;
     updateTeacherbyid(mydto: TeacherUpdate, id: any): any;
 }

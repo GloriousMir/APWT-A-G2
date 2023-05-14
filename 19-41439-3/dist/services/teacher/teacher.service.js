@@ -35,8 +35,15 @@ let TeacherService = class TeacherService {
     getAllTeacher() {
         return this.teacherRepo.find();
     }
-    getTeachertByID(id) {
-        return this.teacherRepo.findOneBy(id);
+    async getTeachertByID(id) {
+        const data = await this.teacherRepo.findOneBy({ id });
+        console.log(data);
+        if (data !== null) {
+            return data;
+        }
+        else {
+            throw new common_1.HttpException('Not Found', common_1.HttpStatus.NOT_FOUND);
+        }
     }
     deleteTeacherbyid(id) {
         return this.teacherRepo.delete(id);
